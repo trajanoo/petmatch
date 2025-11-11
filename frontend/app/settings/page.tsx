@@ -21,12 +21,11 @@ import { img } from "motion/react-client";
 export default function SettingsPage() {
   const { user, setUser } = useUser();
 
-  // Define valores padrões caso user esteja undefined
   const [profileData, setProfileData] = useState({
     name: user?.name || "Usuário Pet",
     email: user?.email || "usuario@petmatch.com",
     phone: "+55 11 98765-4321",
-    bio: "Amante de pets e tecnologia 🐾"
+    bio: ""
   });
 
   const [isEditingProfile, setIsEditingProfile] = useState(false);
@@ -77,7 +76,6 @@ export default function SettingsPage() {
     }
   ];
 
-  // 🔒 Fallback seguro para as iniciais do usuário
   const userInitials = (user?.name || "Usuário Pet")
     .split(' ')
     .map(n => n[0])
@@ -119,7 +117,6 @@ export default function SettingsPage() {
       )}
     </Avatar>
 
-    {/* Botão de upload */}
     <button
       onClick={() => document.getElementById("fileInput")?.click()}
       className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-[#EE6724] text-white flex items-center justify-center shadow-lg hover:bg-[#d95a1f] transition-colors"
@@ -127,7 +124,6 @@ export default function SettingsPage() {
       <Camera className="w-4 h-4" />
     </button>
 
-    {/* Input invisível para upload */}
     <input
       type="file"
       id="fileInput"
@@ -141,7 +137,6 @@ export default function SettingsPage() {
         formData.append("arquivo", file);
 
         try {
-          // Mostra loading (opcional)
           setProfileData(prev => ({ ...prev, uploading: true }));
 
           const res = await fetch(`http://localhost:3001/users/${user.id}/profile-image`, {
@@ -156,9 +151,6 @@ export default function SettingsPage() {
 
           const updatedUser = await res.json();
 
-          // Atualiza no contexto
-          // Exemplo: se você tiver setUser no contexto
-          // (certifique-se que useUser retorna também setUser)
           if (updatedUser[0]) {
             setUser(prev => ({ ...prev, profile_pic: updatedUser[0].profile_pic }));
           }

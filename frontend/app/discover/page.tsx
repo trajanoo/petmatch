@@ -27,27 +27,27 @@ export default function DiscoverScreen() {
       name: "Thor",
       breed: "Husky Siberiano",
       age: "4 anos",
-      location: "Rio de Janeiro, RJ",
+      location: "1.2km",
       image: "https://images.unsplash.com/photo-1568572933382-74d440642117",
       tags: ["Energético", "Companheiro"],
       description: "Thor é muito brincalhão e adora atividades ao ar livre!"
     },
     {
       id: 2,
-      name: "Mia",
+      name: "Persa",
       breed: "Gato Persa",
       age: "1 ano",
-      location: "São Paulo, SP",
+      location: "2km",
       image: "https://images.unsplash.com/photo-1574158622682-e40e69881006",
       tags: ["Calma", "Carinhosa"],
-      description: "Mia é uma gatinha dócil que adora fazer companhia."
+      description: "Persa é um gatinho dócil que adora fazer companhia."
     },
     {
       id: 3,
       name: "Duke",
       breed: "Pit Bull",
       age: "3 anos",
-      location: "Belo Horizonte, MG",
+      location: "0.4km",
       image: "https://images.unsplash.com/photo-1551717743-49959800b1f6",
       tags: ["Protetor", "Leal"],
       description: "Duke é um cão extremamente leal e carinhoso com a família."
@@ -57,7 +57,7 @@ export default function DiscoverScreen() {
       name: "Luna",
       breed: "Golden Retriever",
       age: "2 anos",
-      location: "Curitiba, PR",
+      location: "2.1km",
       image: "https://images.unsplash.com/photo-1633722715463-d30f4f325e24",
       tags: ["Amigável", "Inteligente"],
       description: "Luna ama brincar e é ótima com crianças!"

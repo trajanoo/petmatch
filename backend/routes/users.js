@@ -70,7 +70,7 @@ router.post("/login", async (req, res) => {
       message: "Login realizado com sucesso",
       user: {
         id: user.id,
-        name: user.username, // ou o nome da sua coluna
+        name: user.username,
         email: user.email
       }
     });
@@ -96,7 +96,7 @@ router.post("/login", async (req, res) => {
         message: "Registro realizado com sucesso",
         user: {
           id: user.id,
-          name: user.username,
+          name: user.name,
           email: user.email
         }
       });
