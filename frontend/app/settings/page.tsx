@@ -16,6 +16,7 @@ import { Label } from "../components/Label";
 import BottomNavigation from "../components/BottomNavigation";
 import { redirect } from "next/navigation";
 import { useUser } from "../context/UserContext";
+import { img } from "motion/react-client";
 
 export default function SettingsPage() {
   const { user, setUser } = useUser();
@@ -246,22 +247,31 @@ export default function SettingsPage() {
         <h2 className="text-white mb-6">Configurações</h2>
 
         <Card
-          className="rounded-2xl border-0 shadow-lg p-4 bg-white cursor-pointer hover:shadow-xl transition-shadow"
-          onClick={() => setIsEditingProfile(true)}
-        >
-          <div className="flex items-center gap-4">
-            <Avatar className="w-16 h-16 bg-orange-100">
-              <AvatarFallback className="bg-orange-100 text-[#EE6724] text-xl">
-                {userInitials}
-              </AvatarFallback>
-            </Avatar>
-            <div className="flex-1">
-              <h4 className="text-gray-800 mb-1">{profileData.name}</h4>
-              <p className="text-gray-500">{profileData.email}</p>
-            </div>
-            <ChevronRight className="w-5 h-5 text-gray-400" />
-          </div>
-        </Card>
+  className="rounded-2xl border-0 shadow-lg p-4 bg-white cursor-pointer hover:shadow-xl transition-shadow"
+  onClick={() => setIsEditingProfile(true)}
+>
+  <div className="flex items-center gap-4">
+    <Avatar className="w-16 h-16 bg-orange-100 overflow-hidden">
+      {user?.profile_pic ? (
+        <img
+          src={`http://localhost:3001/uploads/${user.profile_pic}`}
+          alt="Foto de perfil"
+          className="object-cover w-full h-full"
+        />
+      ) : (
+        <AvatarFallback className="bg-orange-100 text-[#EE6724] text-xl">
+          {userInitials}
+        </AvatarFallback>
+      )}
+    </Avatar>
+
+    <div className="flex-1">
+      <h4 className="text-gray-800 mb-1">{profileData.name}</h4>
+      <p className="text-gray-500">{profileData.email}</p>
+    </div>
+    <ChevronRight className="w-5 h-5 text-gray-400" />
+  </div>
+</Card>
       </div>
 
       <div className="px-6 space-y-6">

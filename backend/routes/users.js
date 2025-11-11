@@ -65,7 +65,6 @@ router.post("/login", async (req, res) => {
     if (err) return res.status(500).json({ success: false, message: "Erro ao verificar senha" });
     if (!match) return res.status(401).json({ success: false, message: "Senha incorreta" });
 
-    // 🔥 Retorne os dados do usuário
     res.json({
       success: true,
       message: "Login realizado com sucesso",
@@ -87,8 +86,20 @@ router.post("/login", async (req, res) => {
         "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *",
         [name, email, hash]
       )
+
+      
+    const user = result.rows[0];
+
       console.log("Usuário cadastro com sucesso!")
-      res.status(201).json(result.rows[0])
+      res.json({
+        success: true,
+        message: "Registro realizado com sucesso",
+        user: {
+          id: user.id,
+          name: user.username,
+          email: user.email
+        }
+      });
     } catch (err) {
       console.error(err)
       res.status(500).json({ error: "Erro ao criptografar senha." })

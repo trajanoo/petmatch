@@ -4,6 +4,7 @@ import { Heart, PawPrint } from 'lucide-react'
 import { useRouter } from 'next/navigation';
 import Link from 'next/link'
 import { useState } from 'react';
+import { useUser } from '../context/UserContext';
 
 export default function RegisterPage() {
     const router = useRouter();
@@ -11,6 +12,7 @@ export default function RegisterPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState(''); 
     const [confirmPassword, setConfirmPassword] = useState('');
+    const { setUser } = useUser();
 
     function handleConfirmPassword(e: React.FormEvent) {
         e.preventDefault();
@@ -34,7 +36,12 @@ export default function RegisterPage() {
             })
 
             const data = await res.json();
-            if(res.ok && data.success !== false) {
+            if(res.ok && data.user !== false) {
+                setUser({
+                    id: data.user.id,
+                    name: data.user.name,
+                    email: data.user.email
+                })
                 router.push('/discover')
             } else {
                 alert('Registro falhou: ' + data.message);
